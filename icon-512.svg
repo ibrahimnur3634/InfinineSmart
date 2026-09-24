@@ -1,12 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Infinine Smart Solutions icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Infinine Smart Solutions app icon">
   <defs>
-    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+    <linearGradient id="loopBlue" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0b5ed7"/>
+    </linearGradient>
+    <linearGradient id="loopGreen" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0%" stop-color="#22c55e"/>
-      <stop offset="100%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0a8f5a"/>
+    </linearGradient>
+    <linearGradient id="globeGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0d4ea7"/>
     </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="110" fill="#020617"/>
-  <circle cx="256" cy="256" r="150" fill="url(#g1)" opacity="0.92"/>
-  <path d="M154 323c32-64 88-97 160-97 30 0 54 5 76 16-27 88-92 132-208 146-14-20-23-39-28-65zm75-154c47-40 112-53 176-41-23 89-83 137-176 160-10-42-7-81 0-119z" fill="#f8fafc" opacity="0.9"/>
-  <path d="M146 256c0-102 83-185 185-185 56 0 106 23 142 61-46-12-93-6-142 17-82 36-123 112-139 185-16 48-9 92 0 133-36-34-46-70-46-105z" fill="#0f172a" opacity="0.25"/>
+
+  <rect width="512" height="512" fill="#f3f3f3"/>
+
+  <g transform="translate(18 30)">
+    <path d="M28 248c0-72 58-130 130-130 58 0 92 27 136 67 33 31 64 68 116 68 64 0 116-52 116-116 0-65-52-116-116-116-58 0-92 27-136 67-33 31-64 68-116 68-72 0-130-58-130-130 0-72 58-130 130-130 58 0 92 27 136 67 33 31 64 68 116 68 64 0 116-52 116-116" fill="none" stroke="url(#loopBlue)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M88 248c0-46 38-84 84-84 58 0 92 27 136 67 33 31 64 68 116 68 46 0 84-38 84-84 0-46-38-84-84-84-58 0-92 27-136 67-33 31-64 68-116 68-46 0-84-38-84-84 0-46 38-84 84-84" fill="none" stroke="url(#loopGreen)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(150 120)">
+      <circle cx="66" cy="66" r="62" fill="url(#globeGrad)"/>
+      <circle cx="66" cy="66" r="62" fill="none" stroke="#eaf7ff" stroke-width="2.2"/>
+      <path d="M66 0v132M0 66h132M18 20c20 18 33 38 40 66 8 30 21 49 48 66M114 20c-20 18-33 38-40 66-8 30-21 49-48 66" fill="none" stroke="#edfaff" stroke-width="3" opacity="0.8"/>
+      <path d="M25 66c10-18 18-33 30-46 18 12 31 28 37 46-6 18-19 34-37 46-12-13-20-28-30-46z" fill="#d8f1ff" opacity="0.6"/>
+      <g fill="#0d7bc8">
+        <rect x="95" y="-18" width="10" height="10"/>
+        <rect x="117" y="-2" width="10" height="10"/>
+        <rect x="128" y="18" width="10" height="10"/>
+        <rect x="115" y="48" width="10" height="10"/>
+        <rect x="95" y="65" width="10" height="10"/>
+      </g>
+    </g>
+  </g>
 </svg>
