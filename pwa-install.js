@@ -59,9 +59,12 @@
     banner.id = 'pwaInstallBanner';
     banner.innerHTML = `
       <div class="pwa-banner__content">
-        <div>
-          <strong>Install Infinine</strong>
-          <span>Get quick access and launch it like an app.</span>
+        <div class="pwa-banner__brand">
+          <img src="./icon-192.svg" alt="Infinine icon" class="pwa-banner__icon" />
+          <div>
+            <strong>Install Infinine</strong>
+            <span>Get quick access and launch it like an app.</span>
+          </div>
         </div>
         <button id="pwaInstallButton" type="button">Install</button>
       </div>
@@ -94,6 +97,19 @@
         box-shadow: 0 18px 50px rgba(2, 6, 23, 0.35);
         color: #e2e8f0;
         font-family: 'Poppins', Arial, sans-serif;
+      }
+      .pwa-banner__brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .pwa-banner__icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: #f3f3f3;
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+        flex-shrink: 0;
       }
       .pwa-banner__content strong {
         display: block;
