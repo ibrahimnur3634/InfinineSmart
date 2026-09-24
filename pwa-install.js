@@ -2,8 +2,58 @@
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
     window.navigator.standalone === true;
 
+  if (isStandalone) {
+    return;
+  }
+
+  let deferredPrompt = null;
+
+  function hideInstallPrompt() {
+    const banner = document.getElementById('pwaInstallBanner');
+    if (banner) {
+      banner.classList.remove('visible');
+    }
+  }
+
+  function bindInstallButton(button) {
+    if (!button) return;
+
+    button.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        hideInstallPrompt();
+
+        if (choice.outcome === 'accepted') {
+          console.log('PWA install accepted');
+        } else {
+          console.log('PWA install dismissed');
+        }
+        return;
+      }
+
+      const isSafari = /Safari\//.test(navigator.userAgent) && !/Chrome|CriOS|OPR|Opera/.test(navigator.userAgent);
+      if (isSafari) {
+        const banner = document.getElementById('pwaInstallBanner');
+        if (!banner) return;
+
+        banner.querySelector('strong').textContent = 'Add to Home Screen';
+        banner.querySelector('span').textContent = 'Tap the Share button and choose Add to Home Screen.';
+        banner.querySelector('#pwaInstallButton').textContent = 'Open Share';
+        return;
+      }
+
+      hideInstallPrompt();
+    });
+  }
+
   function buildInstallBanner() {
-    if (document.getElementById('pwaInstallBanner')) return;
+    const existing = document.getElementById('pwaInstallBanner');
+    if (existing) {
+      bindInstallButton(existing.querySelector('#pwaInstallButton'));
+      return existing;
+    }
 
     const banner = document.createElement('div');
     banner.id = 'pwaInstallBanner';
@@ -77,31 +127,14 @@
     document.body.appendChild(banner);
 
     const button = banner.querySelector('#pwaInstallButton');
-    return { banner, button };
+    bindInstallButton(button);
+    return banner;
   }
 
   function showInstallPrompt() {
-    const install = buildInstallBanner();
-    if (install) {
-      install.banner.classList.add('visible');
-    }
+    const banner = buildInstallBanner();
+    banner.classList.add('visible');
   }
-
-  function hideInstallPrompt() {
-    const banner = document.getElementById('pwaInstallBanner');
-    if (banner) banner.classList.remove('visible');
-  }
-
-  function showSafariHint() {
-    const install = buildInstallBanner();
-    if (!install) return;
-
-    install.button.textContent = 'Add to Home Screen';
-    install.banner.querySelector('span').textContent = 'Tap the Share button and choose Add to Home Screen.';
-    install.banner.classList.add('visible');
-  }
-
-  let deferredPrompt = null;
 
   const serviceWorkerUrl = window.location.pathname.includes('/Admin/') || window.location.pathname.includes('/terms/')
     ? '../service-worker.js'
@@ -125,32 +158,8 @@
     hideInstallPrompt();
   });
 
-  if (!isStandalone && !('beforeinstallprompt' in window)) {
-    const isSafari = /Safari\//.test(navigator.userAgent) && !/Chrome|CriOS|OPR|Opera/.test(navigator.userAgent);
-    if (isSafari) {
-      setTimeout(showSafariHint, 1500);
-    }
+  const isSafari = /Safari\//.test(navigator.userAgent) && !/Chrome|CriOS|OPR|Opera/.test(navigator.userAgent);
+  if (!('beforeinstallprompt' in window) && isSafari) {
+    setTimeout(() => showInstallPrompt(), 1500);
   }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const installButton = document.getElementById('pwaInstallButton');
-    if (!installButton) return;
-
-    installButton.addEventListener('click', async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const choice = await deferredPrompt.userChoice;
-        if (choice.outcome === 'accepted') {
-          hideInstallPrompt();
-        }
-        deferredPrompt = null;
-        return;
-      }
-
-      const isSafari = /Safari\//.test(navigator.userAgent) && !/Chrome|CriOS|OPR|Opera/.test(navigator.userAgent);
-      if (isSafari) {
-        showSafariHint();
-      }
-    });
-  });
 })();
