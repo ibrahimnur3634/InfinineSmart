@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Infinine Smart Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./admin-dashboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">INFININE</div>
+    <div class="actions">
+      <div class="status">Admin session active</div>
+      <button class="logout-btn" type="button" id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="stats">
+      <div class="card">
+        <span class="stat-label">Total revenue</span>
+        <div class="stat-value green" id="totalRevenue">KSh 0</div>
+      </div>
+      <div class="card">
+        <span class="stat-label">Orders</span>
+        <div class="stat-value blue" id="totalOrders">0</div>
+      </div>
+      <div class="card">
+        <span class="stat-label">Pending</span>
+        <div class="stat-value amber" id="pendingOrders">0</div>
+      </div>
+      <div class="card">
+        <span class="stat-label">Completed</span>
+        <div class="stat-value red" id="completedOrders">0</div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="card">
+        <div class="panel-title">
+          <span>Recent orders</span>
+        </div>
+        <ul class="recent-list" id="orderList"></ul>
+      </div>
+
+      <div>
+        <div class="mini-card">
+          <div class="panel-title">
+            <span>Sales overview</span>
+          </div>
+          <div class="chart-wrap" id="salesChart"></div>
+        </div>
+
+        <div class="mini-card" style="margin-top: 22px;">
+          <div class="panel-title">
+            <span>Order summary</span>
+          </div>
+          <div class="summary-box">
+            <div class="summary-row"><span>New</span><strong id="summaryNew">0</strong></div>
+            <div class="summary-row"><span>Pending</span><strong id="summaryPending">0</strong></div>
+            <div class="summary-row"><span>Completed</span><strong id="summaryCompleted">0</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="./admin-dashboard.js"></script>
+</body>
+</html>

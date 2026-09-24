@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login | Infinine Smart Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./admin.css">
+</head>
+<body>
+    <div class="login-box">
+        <div class="brand">INFININE</div>
+        <h1>Admin Access</h1>
+        <div class="subtitle">Only authorised internal personnel may access this area.</div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin: 0 0 18px;">
+            <a href="../index.html" target="_blank" style="display:inline-block; padding:7px 10px; border-radius:999px; text-decoration:none; background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.35); color:#bae6fd; font-size:11px; font-weight:700;">Home</a>
+            <a href="../terms/terms.html" target="_blank" style="display:inline-block; padding:7px 10px; border-radius:999px; text-decoration:none; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.35); color:#bbf7d0; font-size:11px; font-weight:700;">Terms</a>
+            <a href="../terms.pdf" download style="display:inline-block; padding:7px 10px; border-radius:999px; text-decoration:none; background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.35); color:#fecaca; font-size:11px; font-weight:700;">PDF</a>
+            <a href="https://wa.me/254711922007?text=Hello%20Infinine%20Smart%20Solutions%2C%20I%20need%20help" target="_blank" style="display:inline-block; padding:7px 10px; border-radius:999px; text-decoration:none; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.35); color:#a7f3d0; font-size:11px; font-weight:700;">WhatsApp</a>
+        </div>
+
+        <div id="messageBox" class="message"></div>
+
+        <form id="adminLoginForm">
+            <div class="field">
+                <label for="adminUsername">Username</label>
+                <input id="adminUsername" type="text" placeholder="Enter username" required />
+            </div>
+
+            <div class="field">
+                <label for="adminPassword">Password</label>
+                <input id="adminPassword" type="password" placeholder="Enter password" required />
+            </div>
+
+            <button class="btn btn-primary" type="submit">Login</button>
+            <button class="btn btn-secondary" type="button" onclick="location.href='../index.html'">Back to Home</button>
+        </form>
+
+        <div class="helper" onclick="requestReset()">Forgot password?</div>
+        <div class="meta">Admin login only</div>
+    </div>
+    <script src="./admin.js"></script>
+</body>
+</html>

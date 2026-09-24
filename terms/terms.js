@@ -1,0 +1,1 @@
+// Terms page script placeholder
