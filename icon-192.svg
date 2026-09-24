@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="Infinine Smart Solutions icon">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="42" fill="#020617"/>
+  <circle cx="96" cy="96" r="56" fill="url(#g1)" opacity="0.92"/>
+  <path d="M58 122c12-24 33-36 60-36 11 0 20 2 28 6-10 33-34 50-77 54-5-8-9-15-11-24zm28-58c18-15 42-20 66-15-9 33-31 51-66 60-4-16-2-30 0-45z" fill="#f8fafc" opacity="0.9"/>
+  <path d="M53 96c0-38 31-69 69-69 21 0 39 9 53 23-17-4-35-2-53 6-30 13-46 42-52 69-6 18-4 34 0 50-14-13-17-26-17-39z" fill="#0f172a" opacity="0.25"/>
+</svg>
