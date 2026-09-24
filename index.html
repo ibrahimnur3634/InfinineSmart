@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Infinine Smart Solutions | Cyber & Digital Services</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#020617;
+    color:#fff;
+    line-height:1.6;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+#intro{
+    position:fixed;
+    inset:0;
+    background:#f3f3f3;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    z-index:99999;
+    animation:introFade 1s forwards;
+    animation-delay:3.5s;
+}
+
+.intro-audio {
+    display:none;
+}
+
+.intro-logo-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform:scale(.75);
+    animation:logoPop 1.4s ease-out both;
+}
+
+.logo-mark{
+    position:relative;
+    width:640px;
+    height:260px;
+}
+
+.logo-loop{
+    position:absolute;
+    left:0;
+    top:18px;
+    width:430px;
+    height:180px;
+    border:24px solid transparent;
+    border-radius:50% 50% 52% 48% / 52% 52% 48% 48%;
+    border-top-color:#0f87d8;
+    border-left-color:#0f87d8;
+    border-bottom-color:#1cc26b;
+    border-right-color:#1cc26b;
+    transform:rotate(-12deg);
+    box-shadow:0 20px 30px rgba(34,197,94,.15);
+    animation:spinLoop 2.2s ease-in-out both;
+}
+
+.logo-loop::before,
+.logo-loop::after{
+    content:"";
+    position:absolute;
+    inset:20px;
+    border:18px solid transparent;
+    border-radius:50% 50% 52% 48% / 52% 52% 48% 48%;
+}
+
+.logo-loop::before{
+    border-top-color:#fff;
+    border-left-color:#fff;
+    opacity:.18;
+}
+
+.logo-loop::after{
+    border-bottom-color:#fff;
+    border-right-color:#fff;
+    opacity:.12;
+}
+
+.logo-globe{
+    position:absolute;
+    left:156px;
+    top:32px;
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 35% 35%, rgba(255,255,255,.9) 0%, rgba(255,255,255,.1) 12%, transparent 13%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.25) 0%, rgba(255,255,255,.06) 38%, transparent 39%),
+        conic-gradient(from 120deg, #1a8fe2, #0d5bb5, #2bb8ff, #1a8fe2);
+    border:8px solid #0f87d8;
+    box-shadow:inset 0 0 0 8px rgba(255,255,255,.2), 0 8px 25px rgba(15,135,216,.22);
+    animation:globeFloat 2s ease-in-out infinite alternate;
+}
+
+.logo-globe::before,
+.logo-globe::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+}
+
+.logo-globe::before{
+    background:
+        linear-gradient(90deg, transparent 48%, rgba(255,255,255,.7) 48%, rgba(255,255,255,.7) 52%, transparent 52%),
+        linear-gradient(transparent 48%, rgba(255,255,255,.7) 48%, rgba(255,255,255,.7) 52%, transparent 52%);
+}
+
+.logo-globe::after{
+    background:linear-gradient(180deg, transparent 45%, rgba(255,255,255,.35) 45%, rgba(255,255,255,.35) 55%, transparent 55%);
+    transform:scale(1.1);
+}
+
+.logo-dots{
+    position:absolute;
+    right:42px;
+    top:110px;
+    width:100px;
+    height:60px;
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:6px;
+    transform:rotate(-8deg);
+}
+
+.logo-dots span{
+    display:block;
+    width:12px;
+    height:12px;
+    background:linear-gradient(135deg, #12b76a, #1db6ff);
+    border-radius:2px;
+    animation:dotPulse 1.5s ease-in-out infinite alternate;
+}
+
+.logo-dots span:nth-child(2n){
+    background:linear-gradient(135deg, #0ea5e9, #22c55e);
+}
+
+.logo-dots span:nth-child(3n){
+    background:linear-gradient(135deg, #22c55e, #0ea5e9);
+}
+
+.logo-wordmark{
+    display:flex;
+    align-items:flex-end;
+    gap:10px;
+    margin-top:10px;
+    animation:wordFade 1.2s ease-in-out both;
+    animation-delay:.6s;
+}
+
+.logo-wordmark h1{
+    font-size:clamp(42px,5vw,96px);
+    letter-spacing:1px;
+    font-weight:900;
+    line-height:0.9;
+    background:linear-gradient(90deg,#1bbf72,#16a0d9);
+    -webkit-background-clip:text;
+    color:transparent;
+    margin:0;
+}
+
+.logo-subtext{
+    margin-top:18px;
+    color:#5f6772;
+    font-size:clamp(16px,2vw,32px);
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    font-weight:600;
+    animation:wordFade 1.2s ease-in-out both;
+    animation-delay:1s;
+}
+
+.logo-tagline{
+    margin-top:16px;
+    font-size:clamp(17px,2vw,30px);
+    color:#6b7280;
+    font-weight:500;
+    font-style:italic;
+    animation:wordFade 1.2s ease-in-out both;
+    animation-delay:1.2s;
+}
+
+@keyframes glow{
+    from{
+        opacity:.6;
+        transform:scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.03);
+    }
+}
+
+@keyframes logoPop{
+    0%{opacity:0; transform:scale(.5) translateY(20px);} 
+    60%{opacity:1; transform:scale(1.04) translateY(-5px);} 
+    100%{opacity:1; transform:scale(1) translateY(0);} 
+}
+
+@keyframes spinLoop{
+    0%{transform:rotate(-24deg) scale(.9); opacity:0;} 
+    55%{opacity:1;} 
+    100%{transform:rotate(-12deg) scale(1); opacity:1;} 
+}
+
+@keyframes globeFloat{
+    0%{transform:translateY(8px);} 
+    100%{transform:translateY(-8px);} 
+}
+
+@keyframes dotPulse{
+    0%{transform:scale(.9); opacity:.7;} 
+    100%{transform:scale(1.15); opacity:1;} 
+}
+
+@keyframes wordFade{
+    0%{opacity:0; transform:translateY(12px);} 
+    100%{opacity:1; transform:translateY(0);} 
+}
+
+@keyframes introFade{
+    to{
+        opacity:0;
+        visibility:hidden;
+    }
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(2,6,23,.94);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #12304a;
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    padding:14px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:800;
+    background:linear-gradient(90deg,#22c55e,#0ea5e9);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    gap:18px;
+}
+
+.nav-links a{
+    color:#cbd5e1;
+    text-decoration:none;
+    font-size:13px;
+}
+
+.nav-links a:hover{
+    color:#22c55e;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:430px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:70px 20px 40px;
+    background:linear-gradient(rgba(2,6,23,.72),rgba(2,6,23,.92));
+}
+
+.hero-wrap{
+    max-width:1200px;
+    width:100%;
+    display:block;
+}
+
+.hero-content{
+    max-width:700px;
+    text-align:left;
+}
+
+.hero-badge{
+    display:inline-block;
+    padding:7px 15px;
+    border:1px solid rgba(34,197,94,.7);
+    border-radius:30px;
+    color:#86efac;
+    font-size:12px;
+    margin-bottom:18px;
+    background:rgba(15,23,42,.4);
+}
+
+.hero h1{
+    font-size:clamp(32px,7vw,62px);
+    line-height:1.1;
+    margin-bottom:18px;
+    text-align:left;
+}
+
+.hero h1 span{
+    color:#22c55e;
+}
+
+.hero p{
+    color:#dbeafe;
+    max-width:650px;
+    margin:0;
+    font-size:15px;
+    text-align:left;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:28px;
+    flex-wrap:wrap;
+}
+
+.hero-btn{
+    padding:12px 20px;
+    border-radius:9px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:13px;
+}
+
+.primary{
+    background:#22c55e;
+    color:#020617;
+}
+
+.secondary{
+    border:1px solid #0ea5e9;
+    color:#7dd3fc;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section-title span{
+    color:#22c55e;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.section-title h2{
+    font-size:30px;
+    margin:5px 0;
+}
+
+.section-title p{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-area{
+    max-width:650px;
+    margin:0 auto 45px;
+    position:relative;
+}
+
+.search-area input{
+    width:100%;
+    padding:15px 18px 15px 45px;
+    background:#0f172a;
+    border:1px solid #1e3a50;
+    border-radius:12px;
+    color:#fff;
+    outline:none;
+    font-size:14px;
+}
+
+.search-area input:focus{
+    border-color:#22c55e;
+    box-shadow:0 0 20px rgba(34,197,94,.1);
+}
+
+.search-icon{
+    position:absolute;
+    left:17px;
+    top:13px;
+    font-size:19px;
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+.category{
+    margin-bottom:45px;
+}
+
+.category-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.category-icon{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#0ea5e9,#22c55e);
+    border-radius:10px;
+    font-size:20px;
+}
+
+.category-header h3{
+    font-size:20px;
+}
+
+.category-header p{
+    font-size:11px;
+    color:#64748b;
+}
+
+
+/* =========================
+   SERVICE GRID
+========================= */
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.service-card{
+    background:
+        radial-gradient(circle at top, rgba(14,165,233,.35), transparent 45%),
+        linear-gradient(135deg, rgba(15,23,42,.9), rgba(8,17,30,.96));
+    border:1px solid rgba(125,211,252,.18);
+    border-radius:12px;
+    padding:16px;
+    transition:.25s;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    box-shadow:inset 0 0 30px rgba(14,165,233,.08);
+}
+
+.service-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,0)),
+        radial-gradient(circle at 20% 20%, rgba(34,197,94,.18), transparent 28%),
+        radial-gradient(circle at 80% 30%, rgba(14,165,233,.14), transparent 25%);
+    filter:blur(8px);
+    pointer-events:none;
+}
+
+.service-card > *{
+    position:relative;
+    z-index:1;
+}
+
+.service-card::after{
+    content:"";
+    position:absolute;
+    width:4px;
+    height:100%;
+    left:0;
+    top:0;
+    background:linear-gradient(#22c55e,#0ea5e9);
+    opacity:0;
+    transition:.25s;
+}
+
+.service-card:hover{
+    transform:translateY(-4px);
+    border-color:#0ea5e9;
+    box-shadow:0 10px 30px rgba(14,165,233,.1);
+}
+
+.service-card:hover::after{
+    opacity:1;
+}
+
+.service-icon{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.service-card h4{
+    font-size:13px;
+    margin-bottom:4px;
+}
+
+.service-card p{
+    color:#64748b;
+    font-size:10px;
+}
+
+.service-card button{
+    margin-top:10px;
+    width:100%;
+    padding:7px;
+    border:0;
+    border-radius:6px;
+    background:#123c30;
+    color:#86efac;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:bold;
+}
+
+
+/* =========================
+   NO RESULTS
+========================= */
+
+#noResults{
+    display:none;
+    text-align:center;
+    color:#f87171;
+    padding:30px;
+}
+
+
+/* =========================
+   WHY US
+========================= */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.feature{
+    background:#0f172a;
+    border:1px solid #17324a;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    min-height:180px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    box-shadow: inset 0 0 0 2000px rgba(2, 6, 23, 0.35);
+}
+
+.feature-icon{
+    font-size:28px;
+}
+
+.feature h4{
+    margin:8px 0 4px;
+    font-size:14px;
+}
+
+.feature p{
+    color:#64748b;
+    font-size:11px;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section{
+    background:linear-gradient(135deg, rgba(5,46,22,.82), rgba(8,47,73,.92));
+    padding:50px 20px;
+}
+
+.contact-box{
+    max-width:700px;
+    margin:auto;
+    text-align:center;
+    background:rgba(2,6,23,.35);
+    border:1px solid rgba(125,211,252,.2);
+    border-radius:20px;
+    padding:36px 24px;
+}
+
+.contact-box h2{
+    font-size:30px;
+}
+
+.contact-box p{
+    color:#cbd5e1;
+    font-size:13px;
+    margin:10px 0 25px;
+}
+
+.contact-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.contact-btn{
+    padding:12px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:13px;
+}
+
+.call{
+    background:#22c55e;
+    color:#020617;
+}
+
+.whatsapp{
+    background:#25D366;
+    color:#fff;
+}
+
+.wa-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.wa-icon svg{
+    width:20px;
+    height:20px;
+    display:block;
+    fill:currentColor;
+}
+
+.float-wa .wa-icon svg{
+    width:26px;
+    height:26px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-section{
+    padding:50px 20px;
+}
+
+form{
+    max-width:550px;
+    margin:auto;
+    padding:25px;
+    background:#0f172a;
+    border:1px solid #1e3a50;
+    border-radius:15px;
+}
+
+form h2{
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.form-group{
+    margin-bottom:10px;
+}
+
+form label{
+    display:block;
+    font-size:11px;
+    color:#94a3b8;
+    margin-bottom:4px;
+}
+
+form input,
+form textarea{
+    width:100%;
+    padding:11px;
+    border-radius:8px;
+    border:1px solid #1e3a50;
+    background:#020617;
+    color:#fff;
+    outline:none;
+    font-size:13px;
+}
+
+form input:focus,
+form textarea:focus{
+    border-color:#22c55e;
+}
+
+form textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.submit-btn{
+    width:100%;
+    margin-top:5px;
+    padding:12px;
+    border:0;
+    border-radius:8px;
+    background:linear-gradient(90deg,#22c55e,#0ea5e9);
+    color:#020617;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#01040a;
+    padding:30px 20px;
+    text-align:center;
+    color:#64748b;
+    font-size:11px;
+}
+
+footer strong{
+    color:#22c55e;
+}
+
+.designer{
+    margin-top:8px;
+    color:#475569;
+}
+
+
+/* =========================
+   FLOAT WHATSAPP
+========================= */
+
+.float-wa{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    text-decoration:none;
+    font-size:25px;
+    z-index:5000;
+    box-shadow:0 5px 25px rgba(37,211,102,.4);
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    .services-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .features{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    .navbar{
+        justify-content:center;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .services-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero{
+        min-height:400px;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .services-grid{
+        grid-template-columns:1fr;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        padding:35px 14px;
+    }
+
+    .category-header h3{
+        font-size:17px;
+    }
+
+    .hero{
+        padding:60px 15px;
+    }
+
+    .hero h1{
+        font-size:31px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div id="intro">
+
+    <audio class="intro-audio" id="introAudio" preload="auto" aria-hidden="true">
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <div class="intro-logo-wrap">
+
+        <div class="logo-mark" aria-label="Infinine Smart Solutions logo animation">
+            <div class="logo-loop"></div>
+            <div class="logo-globe"></div>
+            <div class="logo-dots">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="logo-wordmark">
+        <h1>INFININE</h1>
+    </div>
+
+    <div class="logo-subtext">Smart Solutions Limited</div>
+
+    <div class="logo-tagline">Innovate • Connect • Empower</div>
+
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="navbar">
+
+        <div class="logo">
+            INFININE
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="#services">
+                Services
+            </a>
+
+            <a href="#why-us">
+                Why Us
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-wrap">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                Trusted Digital Support
+            </div>
+
+            <h1>
+                Infinine
+                <span>Smart Solutions</span>
+            </h1>
+
+            <p>
+                Professional cyber café, online application,
+                document, printing, government and digital
+                services — all in one place.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#services"
+                   class="hero-btn primary">
+                    🔎 Explore Services
+                </a>
+
+                <a href="https://wa.me/254711922007?text=Hello%20Infinine%20Smart%20Solutions%2C%20I%20need%20assistance"
+                   target="_blank"
+                   class="hero-btn secondary">
+                    <span class="wa-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp">
+                            <path d="M20.52 3.48A11.76 11.76 0 0 0 12.15 0C5.57 0 .16 5.4.16 12.02a11.8 11.8 0 0 0 1.58 5.95L0 24l6.18-1.62a11.9 11.9 0 0 0 5.97 1.62h.01c6.58 0 11.99-5.4 11.99-12.02 0-3.2-1.26-6.22-3.63-8.5Zm-8.37 18.46h-.01c-1.92 0-3.8-.52-5.44-1.5l-.39-.23-3.67.96 1-3.58-.25-.39A9.9 9.9 0 0 1 2.15 12c0-5.46 4.46-9.9 9.95-9.9 2.65 0 5.14 1.03 7.01 2.9a9.81 9.81 0 0 1 2.9 7.01c0 5.47-4.45 9.9-9.9 9.9Zm5.44-7.42c-.3-.15-1.78-.88-2.05-.98-.27-.1-.47-.15-.66.15-.2.3-.76.98-.94 1.18-.17.2-.35.23-.65.08-.3-.15-1.26-.47-2.39-1.49-.88-.78-1.48-1.74-1.65-2.03-.17-.3-.02-.46.13-.62.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5l-.56-.01c-.2 0-.52.08-.8.38-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.2 3.07c.15.2 2.08 3.18 5.04 4.46.7.3 1.25.48 1.68.61.71.23 1.35.2 1.86.12.57-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.12-.27-.2-.57-.35Z"/>
+                        </svg>
+                    </span>
+                    WhatsApp Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section id="services">
+
+<div class="container">
+
+    <div class="section-title">
+
+        <span>What We Offer</span>
+
+        <h2>Our Services</h2>
+
+        <p>
+            Choose a service below and contact us directly.
+        </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-area">
+
+        <span class="search-icon">🔎</span>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search for a service e.g. KRA, CV, HELB, Printing..."
+            autocomplete="off">
+
+    </div>
+
+
+    <div id="serviceArea">
+
+
+        <!-- GOVERNMENT -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    🇰🇪
+                </div>
+
+                <div>
+                    <h3>Government & eCitizen</h3>
+                    <p>Government digital services</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="eCitizen Account">
+                    <div class="service-icon">🏛️</div>
+                    <h4>eCitizen Services</h4>
+                    <p>Online government services</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Good Conduct / Police Clearance">
+                    <div class="service-icon">📜</div>
+                    <h4>Good Conduct</h4>
+                    <p>Police clearance assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Birth Certificate">
+                    <div class="service-icon">📄</div>
+                    <h4>Birth Certificate</h4>
+                    <p>Application assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Passport Application">
+                    <div class="service-icon">🛂</div>
+                    <h4>Passport Services</h4>
+                    <p>Application assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="ID Services">
+                    <div class="service-icon">🪪</div>
+                    <h4>ID Services</h4>
+                    <p>Application & replacement assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Marriage Certificate">
+                    <div class="service-icon">💍</div>
+                    <h4>Marriage Certificate</h4>
+                    <p>Application assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- KRA -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    💰
+                </div>
+
+                <div>
+                    <h3>KRA & Tax Services</h3>
+                    <p>Tax and iTax assistance</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="KRA PIN Registration">
+                    <div class="service-icon">🧾</div>
+                    <h4>KRA PIN</h4>
+                    <p>Registration & retrieval</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="KRA NIL Returns">
+                    <div class="service-icon">📊</div>
+                    <h4>NIL Returns</h4>
+                    <p>KRA return assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="KRA Tax Returns">
+                    <div class="service-icon">💰</div>
+                    <h4>Tax Returns</h4>
+                    <p>iTax return assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="KRA Tax Compliance Certificate">
+                    <div class="service-icon">✅</div>
+                    <h4>Tax Compliance</h4>
+                    <p>TCC assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NTSA -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    🚗
+                </div>
+
+                <div>
+                    <h3>NTSA & Motor Services</h3>
+                    <p>Vehicle and driving services</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="NTSA TIMS">
+                    <div class="service-icon">🚘</div>
+                    <h4>NTSA TIMS</h4>
+                    <p>Account assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Driving Licence Renewal">
+                    <div class="service-icon">🪪</div>
+                    <h4>Driving Licence</h4>
+                    <p>Renewal assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Motor Vehicle Transfer">
+                    <div class="service-icon">🔄</div>
+                    <h4>Vehicle Transfer</h4>
+                    <p>Transfer assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Motor Vehicle Search">
+                    <div class="service-icon">🔍</div>
+                    <h4>Vehicle Search</h4>
+                    <p>Motor vehicle search</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EDUCATION -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    🎓
+                </div>
+
+                <div>
+                    <h3>Education & Students</h3>
+                    <p>Applications and student services</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="HELB Application">
+                    <div class="service-icon">🎓</div>
+                    <h4>HELB</h4>
+                    <p>Loan application assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="KUCCPS Application">
+                    <div class="service-icon">🏫</div>
+                    <h4>KUCCPS</h4>
+                    <p>Course application assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="University Application">
+                    <div class="service-icon">🎓</div>
+                    <h4>University Applications</h4>
+                    <p>Online application assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Scholarship Application">
+                    <div class="service-icon">🏆</div>
+                    <h4>Scholarships</h4>
+                    <p>Scholarship applications</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Bursary Application">
+                    <div class="service-icon">📚</div>
+                    <h4>Bursary Applications</h4>
+                    <p>Online bursary assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="TVET Application">
+                    <div class="service-icon">🧑‍🔧</div>
+                    <h4>TVET Applications</h4>
+                    <p>College application assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- JOBS -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    💼
+                </div>
+
+                <div>
+                    <h3>Jobs & Career</h3>
+                    <p>Get ready for your next opportunity</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="CV Writing">
+                    <div class="service-icon">📄</div>
+                    <h4>CV Writing</h4>
+                    <p>Professional CV preparation</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="CV Design">
+                    <div class="service-icon">🎨</div>
+                    <h4>CV Design</h4>
+                    <p>Modern professional design</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Cover Letter">
+                    <div class="service-icon">✉️</div>
+                    <h4>Cover Letter</h4>
+                    <p>Application letter assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Online Job Application">
+                    <div class="service-icon">💻</div>
+                    <h4>Job Applications</h4>
+                    <p>Online application assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DOCUMENTS -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    📄
+                </div>
+
+                <div>
+                    <h3>Printing & Documents</h3>
+                    <p>Professional document services</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="Typing">
+                    <div class="service-icon">⌨️</div>
+                    <h4>Typing</h4>
+                    <p>Fast document typing</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Printing">
+                    <div class="service-icon">🖨️</div>
+                    <h4>Printing</h4>
+                    <p>Black & white / colour</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Photocopying">
+                    <div class="service-icon">📑</div>
+                    <h4>Photocopying</h4>
+                    <p>Document photocopying</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Scanning">
+                    <div class="service-icon">📠</div>
+                    <h4>Scanning</h4>
+                    <p>Scan documents to PDF</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="PDF Services">
+                    <div class="service-icon">📕</div>
+                    <h4>PDF Services</h4>
+                    <p>Convert, merge & compress</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Lamination">
+                    <div class="service-icon">🛡️</div>
+                    <h4>Lamination</h4>
+                    <p>Protect your documents</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Document Binding">
+                    <div class="service-icon">📚</div>
+                    <h4>Binding</h4>
+                    <p>Professional document binding</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Passport Photos">
+                    <div class="service-icon">📸</div>
+                    <h4>Passport Photos</h4>
+                    <p>Digital passport photos</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BUSINESS -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    🏢
+                </div>
+
+                <div>
+                    <h3>Business Services</h3>
+                    <p>Business and entrepreneurship support</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="Business Registration">
+                    <div class="service-icon">🏢</div>
+                    <h4>Business Registration</h4>
+                    <p>Registration assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Company Registration">
+                    <div class="service-icon">🏭</div>
+                    <h4>Company Registration</h4>
+                    <p>Company registration assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Business Permit">
+                    <div class="service-icon">📋</div>
+                    <h4>Business Permit</h4>
+                    <p>Permit application assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Business Plan">
+                    <div class="service-icon">📈</div>
+                    <h4>Business Plan</h4>
+                    <p>Business document preparation</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Logo Design">
+                    <div class="service-icon">🎨</div>
+                    <h4>Logo Design</h4>
+                    <p>Professional business logos</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Business Card Design">
+                    <div class="service-icon">💳</div>
+                    <h4>Business Cards</h4>
+                    <p>Modern card designs</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ONLINE -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    🌐
+                </div>
+
+                <div>
+                    <h3>Online & Digital Services</h3>
+                    <p>Internet and digital assistance</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="Email Setup">
+                    <div class="service-icon">📧</div>
+                    <h4>Email Setup</h4>
+                    <p>Gmail and email assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Online Form Filling">
+                    <div class="service-icon">📝</div>
+                    <h4>Online Forms</h4>
+                    <p>Form filling assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Online Registration">
+                    <div class="service-icon">🌐</div>
+                    <h4>Online Registration</h4>
+                    <p>Online account registration</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Online Payments">
+                    <div class="service-icon">💳</div>
+                    <h4>Online Payments</h4>
+                    <p>Payment portal assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DESIGN -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    🎨
+                </div>
+
+                <div>
+                    <h3>Graphic Design</h3>
+                    <p>Creative digital designs</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="Logo Design">
+                    <div class="service-icon">🎨</div>
+                    <h4>Logo Design</h4>
+                    <p>Business logo design</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Poster Design">
+                    <div class="service-icon">🖼️</div>
+                    <h4>Poster Design</h4>
+                    <p>Promotional posters</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Flyer Design">
+                    <div class="service-icon">📃</div>
+                    <h4>Flyer Design</h4>
+                    <p>Business & event flyers</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Social Media Design">
+                    <div class="service-icon">📱</div>
+                    <h4>Social Media Design</h4>
+                    <p>Posts and promotional graphics</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPUTER -->
+
+        <div class="category">
+
+            <div class="category-header">
+
+                <div class="category-icon">
+                    💻
+                </div>
+
+                <div>
+                    <h3>Computer Services</h3>
+                    <p>Computer and software assistance</p>
+                </div>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card" data-service="Computer Formatting">
+                    <div class="service-icon">💻</div>
+                    <h4>Computer Formatting</h4>
+                    <p>Computer setup assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Windows Installation">
+                    <div class="service-icon">🪟</div>
+                    <h4>Windows Installation</h4>
+                    <p>Operating system installation</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Software Installation">
+                    <div class="service-icon">⚙️</div>
+                    <h4>Software Installation</h4>
+                    <p>Software setup assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+                <div class="service-card" data-service="Computer Troubleshooting">
+                    <div class="service-icon">🔧</div>
+                    <h4>Troubleshooting</h4>
+                    <p>Basic computer assistance</p>
+                    <button>Request Service</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="noResults">
+        ❌ No matching service found.
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     WHY US
+========================= -->
+
+<section id="why-us">
+
+<div class="container">
+
+    <div class="section-title">
+
+        <span>Why Choose Us</span>
+
+        <h2>Smart • Fast • Convenient</h2>
+
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h4>Fast Service</h4>
+            <p>Quick assistance with your digital needs.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">💻</div>
+            <h4>Many Services</h4>
+            <p>Government, documents, online and business services.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📱</div>
+            <h4>WhatsApp Support</h4>
+            <p>Contact us directly through WhatsApp.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🔐</div>
+            <h4>Professional</h4>
+            <p>Reliable assistance with your digital tasks.</p>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="contact-section" id="contact">
+
+<div class="contact-box">
+
+    <h2>Need a Service?</h2>
+
+    <p>
+        Contact Infinine Smart Solutions and tell us
+        what you need help with.
+    </p>
+
+    <div class="contact-buttons">
+
+        <a
+          class="contact-btn call"
+          href="tel:0711922007">
+          📞 0711 922 007
+        </a>
+
+        <a
+          class="contact-btn whatsapp"
+          target="_blank"
+          href="https://wa.me/254711922007?text=Hello%20Infinine%20Smart%20Solutions%2C%20I%20need%20assistance">
+          <span class="wa-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp">
+              <path d="M20.52 3.48A11.76 11.76 0 0 0 12.15 0C5.57 0 .16 5.4.16 12.02a11.8 11.8 0 0 0 1.58 5.95L0 24l6.18-1.62a11.9 11.9 0 0 0 5.97 1.62h.01c6.58 0 11.99-5.4 11.99-12.02 0-3.2-1.26-6.22-3.63-8.5Zm-8.37 18.46h-.01c-1.92 0-3.8-.52-5.44-1.5l-.39-.23-3.67.96 1-3.58-.25-.39A9.9 9.9 0 0 1 2.15 12c0-5.46 4.46-9.9 9.95-9.9 2.65 0 5.14 1.03 7.01 2.9a9.81 9.81 0 0 1 2.9 7.01c0 5.47-4.45 9.9-9.9 9.9Zm5.44-7.42c-.3-.15-1.78-.88-2.05-.98-.27-.1-.47-.15-.66.15-.2.3-.76.98-.94 1.18-.17.2-.35.23-.65.08-.3-.15-1.26-.47-2.39-1.49-.88-.78-1.48-1.74-1.65-2.03-.17-.3-.02-.46.13-.62.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5l-.56-.01c-.2 0-.52.08-.8.38-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.2 3.07c.15.2 2.08 3.18 5.04 4.46.7.3 1.25.48 1.68.61.71.23 1.35.2 1.86.12.57-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.12-.27-.2-.57-.35Z"/>
+            </svg>
+          </span>
+          WhatsApp Us
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     REQUEST FORM
+========================= -->
+
+<section class="form-section">
+
+<form id="serviceForm">
+
+    <h2>Request a Service</h2>
+
+    <div class="form-group">
+
+        <label>Your Name</label>
+
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter your name"
+          required>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>Phone Number</label>
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Enter your phone number"
+          required>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>Service Needed</label>
+
+        <input
+          type="text"
+          id="service"
+          placeholder="e.g. KRA PIN, CV Writing..."
+          required>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label>Message</label>
+
+        <textarea
+          id="message"
+          placeholder="Tell us what you need..."
+          required></textarea>
+
+    </div>
+
+
+    <button class="submit-btn" type="submit">
+        💬 Send Request via WhatsApp
+    </button>
+
+</form>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <strong>INFININE SMART SOLUTIONS</strong>
+
+    <br>
+
+    Tech • Cyber Services • Digital Solutions
+
+    <div class="designer">
+        <a href="https://wa.me/254759240255?text=Hello%20Sigon%20Web%20Designer%2C%20my%20website%20is%20having%20a%20problem%20and%20I%20need%20help." target="_blank" style="color:#7dd3fc; text-decoration:none;">
+            Designed by Sigon Web Designer • 0759240255
+        </a>
+    </div>
+
+    <div style="margin-top:16px; margin-bottom:8px; color:#cbd5e1; font-size:13px;">
+        Follow us on
+    </div>
+
+    <div style="display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook" style="width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#1877f2; color:#fff; text-decoration:none; font-weight:700;">f</a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram" style="width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5); color:#fff; text-decoration:none; font-weight:700;">◎</a>
+        <a href="https://x.com" target="_blank" aria-label="X" style="width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#0f172a; border:1px solid #334155; color:#fff; text-decoration:none; font-weight:700;">X</a>
+    </div>
+
+    <div style="margin-bottom:12px; color:#e2e8f0; font-size:13px;">
+        @infinine_smart
+    </div>
+
+    <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="terms.html" target="_blank" style="color:#7dd3fc; text-decoration:none;">Terms & Conditions</a>
+        <a href="terms.pdf" download style="color:#86efac; text-decoration:none;">Download PDF</a>
+        <a href="admn.html" target="_self" style="color:#fbbf24; text-decoration:none;">Admin Dashboard</a>
+    </div>
+
+    <div style="margin-top:10px;">
+        © 2026 Infinine Smart Solutions. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+<!-- FLOATING WHATSAPP -->
+
+<a
+    class="float-wa"
+    href="https://wa.me/254711922007?text=Hello%20Infinine%20Smart%20Solutions%2C%20I%20need%20help"
+    target="_blank"
+    aria-label="WhatsApp">
+    <span class="wa-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp">
+            <path d="M20.52 3.48A11.76 11.76 0 0 0 12.15 0C5.57 0 .16 5.4.16 12.02a11.8 11.8 0 0 0 1.58 5.95L0 24l6.18-1.62a11.9 11.9 0 0 0 5.97 1.62h.01c6.58 0 11.99-5.4 11.99-12.02 0-3.2-1.26-6.22-3.63-8.5Zm-8.37 18.46h-.01c-1.92 0-3.8-.52-5.44-1.5l-.39-.23-3.67.96 1-3.58-.25-.39A9.9 9.9 0 0 1 2.15 12c0-5.46 4.46-9.9 9.95-9.9 2.65 0 5.14 1.03 7.01 2.9a9.81 9.81 0 0 1 2.9 7.01c0 5.47-4.45 9.9-9.9 9.9Zm5.44-7.42c-.3-.15-1.78-.88-2.05-.98-.27-.1-.47-.15-.66.15-.2.3-.76.98-.94 1.18-.17.2-.35.23-.65.08-.3-.15-1.26-.47-2.39-1.49-.88-.78-1.48-1.74-1.65-2.03-.17-.3-.02-.46.13-.62.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5l-.56-.01c-.2 0-.52.08-.8.38-.27.3-1.03 1.02-1.03 2.48s1.06 2.87 1.2 3.07c.15.2 2.08 3.18 5.04 4.46.7.3 1.25.48 1.68.61.71.23 1.35.2 1.86.12.57-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.12-.27-.2-.57-.35Z"/>
+        </svg>
+    </span>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+
+const adminStorageKey = "infinineOrders";
+const whatsappNumber = "254711922007";
+
+function getStoredOrders(){
+    try{
+        const raw = localStorage.getItem(adminStorageKey);
+        return raw ? JSON.parse(raw) : [];
+    }catch(error){
+        return [];
+    }
+}
+
+function saveStoredOrders(orders){
+    localStorage.setItem(adminStorageKey, JSON.stringify(orders));
+}
+
+function getServiceAmount(service){
+    const lookup = {
+        "eCitizen Services": 1500,
+        "Good Conduct": 2000,
+        "Birth Certificate": 1800,
+        "ID Card": 2000,
+        "Passport": 2500,
+        "KRA PIN": 1500,
+        "HELB": 1200,
+        "CV Writing": 2500,
+        "Passport Photos": 800,
+        "Photocopying": 500,
+        "Document Scanning": 600,
+        "Typing": 700,
+        "Printing": 1000,
+        "Business Registration": 3000,
+        "Internet Access": 300,
+        "Computer Use": 400
+    };
+
+    return lookup[service] || 1200;
+}
+
+function generateOrderPdf(order){
+    if(!window.jspdf || !window.jspdf.jsPDF){
+        return "";
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFillColor(2, 6, 23);
+    doc.rect(0, 0, 210, 40, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(18);
+    doc.text('INFININE SMART SOLUTIONS', 14, 20);
+    doc.setFontSize(10);
+    doc.text('Service Request Record', 14, 30);
+
+    doc.setTextColor(15, 23, 42);
+    doc.setFontSize(11);
+    let y = 55;
+    const lines = [
+        `Order ID: ${order.id}`,
+        `Customer Name: ${order.customer}`,
+        `Phone: ${order.phone}`,
+        `Service: ${order.service}`,
+        `Status: ${order.status}`,
+        `Date: ${order.createdAt}`,
+        '',
+        'Client Message:',
+        order.message || 'No extra message provided.'
+    ];
+
+    lines.forEach(line => {
+        doc.text(String(line), 14, y);
+        y += 10;
+    });
+
+    return doc.output('datauristring');
+}
+
+function saveOrderToAdmin(order){
+    const orders = getStoredOrders();
+    orders.unshift(order);
+    saveStoredOrders(orders);
+}
+
+
+/* =========================
+   SERVICE CARDS
+========================= */
+
+function openWhatsAppForService(service){
+
+    const order = {
+        id: `INV-${Date.now()}`,
+        customer: "Walk-in customer",
+        phone: "Not provided",
+        service,
+        message: `Requested service: ${service}. Customer clicked the quick service request option from the homepage.`,
+        amount: getServiceAmount(service),
+        status: "New",
+        createdAt: new Date().toISOString()
+    };
+
+    order.pdfData = generateOrderPdf(order);
+    saveOrderToAdmin(order);
+
+    const message =
+        `Hello Infinine Smart Solutions 👋\n\nI would like to request the "${service}" service. Please assist me with this service.`;
+
+    const url =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
+
+    window.open(url, "_blank");
+
+}
+
+document.querySelectorAll(".service-card").forEach(card => {
+
+    card.addEventListener("click", function(){
+
+        const service =
+            this.getAttribute("data-service");
+
+        document.getElementById("service").value =
+            service;
+
+        if(service){
+            openWhatsAppForService(service);
+        }
+
+    });
+
+});
+
+
+/* =========================
+   SEARCH
+========================= */
+
+const search =
+    document.getElementById("search");
+
+const noResults =
+    document.getElementById("noResults");
+
+search.addEventListener("input", function(){
+
+    const value =
+        this.value.toLowerCase().trim();
+
+    let found = 0;
+
+    document.querySelectorAll(".category").forEach(category => {
+
+        let categoryFound = 0;
+
+        category.querySelectorAll(".service-card").forEach(card => {
+
+            const text =
+                card.innerText.toLowerCase();
+
+            if(text.includes(value)){
+
+                card.style.display = "block";
+
+                categoryFound++;
+                found++;
+
+            }else{
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+        if(categoryFound > 0 || value === ""){
+
+            category.style.display = "block";
+
+        }else{
+
+            category.style.display = "none";
+
+        }
+
+    });
+
+    noResults.style.display =
+        found === 0 ? "block" : "none";
+
+});
+
+
+/* =========================
+   FORM
+========================= */
+
+document
+.getElementById("serviceForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const customer =
+        document.getElementById("name").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const service =
+        document.getElementById("service").value.trim();
+
+    const message =
+        document.getElementById("message").value.trim();
+
+    if(!customer || !phone || !service || !message){
+        alert("Please fill in all fields before sending your request.");
+        return;
+    }
+
+    const order = {
+        id: `INV-${Date.now()}`,
+        customer,
+        phone,
+        service,
+        message,
+        amount: getServiceAmount(service),
+        status: "New",
+        createdAt: new Date().toISOString()
+    };
+
+    order.pdfData = generateOrderPdf(order);
+    saveOrderToAdmin(order);
+
+    const whatsappMessage =
+`Hello Infinine Smart Solutions 👋
+
+New service request received.
+
+Order ID: ${order.id}
+Customer Name: ${customer}
+Phone: ${phone}
+Service: ${service}
+Amount: KSh ${order.amount}
+Status: ${order.status}
+
+Message:
+${message}`;
+
+    const url =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(whatsappMessage);
+
+    window.open(url,"_blank");
+
+    document.getElementById("serviceForm").reset();
+    alert("Your request has been submitted to the admin dashboard and WhatsApp.");
+
+});
+
+
+/* =========================
+   INTRO
+========================= */
+
+function playWelcomeVoice(){
+    const speech = window.speechSynthesis;
+
+    if(!speech || typeof SpeechSynthesisUtterance === "undefined"){
+        return;
+    }
+
+    const speak = function(){
+        speech.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(
+            "Welcome to Infinine Smart Solutions."
+        );
+
+        utterance.rate = 0.8;
+        utterance.pitch = 0.6;
+        utterance.volume = 1;
+        utterance.lang = "en-US";
+
+        const voices = speech.getVoices();
+        const preferredVoice = voices.find(voice =>
+            /male|daniel|david|alex|google us english|english us|english uk|en-us|en-gb/i.test(
+                voice.name + " " + voice.lang
+            )
+        ) || voices.find(voice => /en/i.test(voice.lang)) || voices[0];
+
+        if(preferredVoice){
+            utterance.voice = preferredVoice;
+        }
+
+        speech.speak(utterance);
+    };
+
+    if(typeof speech.onvoiceschanged !== "undefined"){
+        speech.onvoiceschanged = function(){
+            speak();
+        };
+    }
+
+    if(speech.getVoices().length > 0){
+        speak();
+    }else{
+        setTimeout(speak, 700);
+    }
+}
+
+setTimeout(function(){
+
+    const intro =
+        document.getElementById("intro");
+
+    if(intro){
+        playWelcomeVoice();
+        intro.style.display = "none";
+    }
+
+},5000);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Open site in Edge",
+      "type": "pwa-msedge",
+      "request": "launch",
+      "url": "file:///C:/Users/Administrator/OneDrive/Desktop/My%20first%20website/index.html",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Open site in Chrome",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "file:///C:/Users/Administrator/OneDrive/Desktop/My%20first%20website/index.html",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}
