@@ -1,0 +1,13 @@
+Inline:
+1) Copy the HTML from client/chat-widget.html into any page.
+2) Keep the server running on http://localhost:3000.
+3) Adjust API_BASE if needed.
+
+Iframe:
+<iframe
+  src="http://localhost:3000/widget"
+  title="Site Assistant"
+  style="width:420px;height:620px;border:0;position:fixed;right:20px;bottom:20px;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+</iframe>
+
+If you want a standalone widget route, serve client/chat-widget.html under /widget.

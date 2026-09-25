@@ -26,8 +26,8 @@
   <main class="container">
     <section class="stats">
       <div class="card">
-        <span class="stat-label">Total revenue</span>
-        <div class="stat-value green" id="totalRevenue">KSh 0</div>
+        <span class="stat-label">New</span>
+        <div class="stat-value green" id="newOrders">0</div>
       </div>
       <div class="card">
         <span class="stat-label">Orders</span>
@@ -54,7 +54,7 @@
       <div>
         <div class="mini-card">
           <div class="panel-title">
-            <span>Sales overview</span>
+            <span>Order activity</span>
           </div>
           <div class="chart-wrap" id="salesChart"></div>
         </div>
@@ -72,6 +72,7 @@
       </div>
     </section>
   </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="./admin-dashboard.js"></script>
   <script src="../pwa-install.js"></script>
 </body>

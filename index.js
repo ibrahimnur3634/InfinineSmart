@@ -1,6 +1,13 @@
 const adminStorageKey = "infinineOrders";
 const whatsappNumber = "254711922007";
 
+const intro = document.getElementById("intro");
+if (intro) {
+    setTimeout(() => {
+        intro.classList.add("is-hidden");
+    }, 4200);
+}
+
 function getStoredOrders(){
     try{
         const raw = localStorage.getItem(adminStorageKey);
@@ -258,70 +265,6 @@ ${message}`;
 
     window.open(url,"_blank");
 
-    document.getElementById("serviceForm").reset();
-    alert("Your request has been submitted to the admin dashboard and WhatsApp.");
-
 });
 
 
-/* =========================
-   INTRO
-========================= */
-
-function playWelcomeVoice(){
-    const speech = window.speechSynthesis;
-
-    if(!speech || typeof SpeechSynthesisUtterance === "undefined"){
-        return;
-    }
-
-    const speak = function(){
-        speech.cancel();
-
-        const utterance = new SpeechSynthesisUtterance(
-            "Welcome to Infinine Smart Solutions."
-        );
-
-        utterance.rate = 0.8;
-        utterance.pitch = 0.6;
-        utterance.volume = 1;
-        utterance.lang = "en-US";
-
-        const voices = speech.getVoices();
-        const preferredVoice = voices.find(voice =>
-            /male|daniel|david|alex|google us english|english us|english uk|en-us|en-gb/i.test(
-                voice.name + " " + voice.lang
-            )
-        ) || voices.find(voice => /en/i.test(voice.lang)) || voices[0];
-
-        if(preferredVoice){
-            utterance.voice = preferredVoice;
-        }
-
-        speech.speak(utterance);
-    };
-
-    if(typeof speech.onvoiceschanged !== "undefined"){
-        speech.onvoiceschanged = function(){
-            speak();
-        };
-    }
-
-    if(speech.getVoices().length > 0){
-        speak();
-    }else{
-        setTimeout(speak, 700);
-    }
-}
-
-setTimeout(function(){
-
-    const intro =
-        document.getElementById("intro");
-
-    if(intro){
-        playWelcomeVoice();
-        intro.style.display = "none";
-    }
-
-},5000);

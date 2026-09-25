@@ -23,32 +23,44 @@
      INTRO
 ========================= -->
 
-<div id="intro">
+<div id="intro" aria-live="polite">
 
-    <audio class="intro-audio" id="introAudio" preload="auto" aria-hidden="true">
-        <source src="" type="audio/mpeg">
-    </audio>
+    <div class="intro-video-wrap">
+        <video class="intro-video" autoplay muted loop playsinline preload="auto">
+            <source src="https://cdn.coverr.co/videos/coverr-man-working-on-his-laptop-at-night-1563692574488/1080p.mp4" type="video/mp4">
+        </video>
+        <div class="intro-video-overlay"></div>
+        <div class="intro-noise"></div>
+        <div class="intro-grid"></div>
+        <div class="intro-glow glow-one"></div>
+        <div class="intro-glow glow-two"></div>
+    </div>
 
-    <div class="intro-logo-wrap">
+    <div class="intro-content">
+        <div class="intro-kicker">Digital Innovation Studio</div>
 
-        <div class="logo-mark" aria-label="Infinine Smart Solutions logo animation">
-            <div class="logo-loop"></div>
-            <div class="logo-globe"></div>
-            <div class="logo-dots">
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
+        <div class="intro-logo-wrap">
+            <div class="logo-mark" aria-label="Infinine Smart Solutions logo animation">
+                <div class="logo-loop"></div>
+                <div class="logo-globe"></div>
+                <div class="logo-dots">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
             </div>
         </div>
 
+        <div class="logo-wordmark">
+            <h1>INFININE</h1>
+        </div>
+
+        <div class="logo-subtext">Smart Solutions Limited</div>
+        <div class="logo-tagline">Innovate • Connect • Empower</div>
+
+        <div class="intro-loader" aria-hidden="true">
+            <span></span>
+        </div>
     </div>
-
-    <div class="logo-wordmark">
-        <h1>INFININE</h1>
-    </div>
-
-    <div class="logo-subtext">Smart Solutions Limited</div>
-
-    <div class="logo-tagline">Innovate • Connect • Empower</div>
 
 </div>
 
@@ -974,6 +986,7 @@
     <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
         <a href="terms/terms.html" target="_blank" style="color:#7dd3fc; text-decoration:none;">Terms & Conditions</a>
         <a href="terms.pdf" download style="color:#86efac; text-decoration:none;">Download PDF</a>
+        <a href="https://wa.me/254711922007?text=Hello%20Infinine%20Smart%20Solutions%2C%20I%20need%20help" target="_blank" rel="noopener" style="color:#fbbf24; text-decoration:none;">Contact us on WhatsApp</a>
         <a href="Admin/admin.html" target="_self" style="color:#fbbf24; text-decoration:none;">Admin Dashboard</a>
     </div>
 
@@ -997,6 +1010,7 @@
         </svg>
     </span>
 </a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="./index.js"></script>
     <script src="./pwa-install.js"></script>
 </body>

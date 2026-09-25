@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinine AI Assistant</title>
+  <style>
+    :root {
+      --bg: #020817;
+      --panel: #0f172a;
+      --panel-2: #111827;
+      --border: rgba(125, 211, 252, 0.18);
+      --primary: #22c55e;
+      --primary-2: #38bdf8;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --user: linear-gradient(135deg, #22c55e, #0ea5e9);
+      --bot: #102a3f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, #020817 0%, #0b1120 100%);
+      color: var(--text);
+      font-family: 'Poppins', Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .assistant-shell {
+      width: min(760px, 100%);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 24px 60px rgba(2, 6, 23, 0.54);
+      overflow: hidden;
+    }
+
+    .assistant-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.18), rgba(59, 130, 246, 0.12));
+    }
+
+    .assistant-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .assistant-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #06203a;
+      font-weight: 800;
+    }
+
+    .assistant-status {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .messages {
+      max-height: 460px;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: rgba(2, 6, 23, 0.82);
+    }
+
+    .message {
+      max-width: 92%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .message.bot {
+      background: var(--bot);
+      border: 1px solid rgba(125, 211, 252, 0.1);
+      align-self: flex-start;
+      border-bottom-left-radius: 6px;
+    }
+
+    .message.user {
+      background: var(--user);
+      color: #03131a;
+      align-self: flex-end;
+      border-bottom-right-radius: 6px;
+      font-weight: 600;
+    }
+
+    .source {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: #a5f3fc;
+      opacity: 0.9;
+    }
+
+    .message ul,
+    .message ol {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+
+    .message li {
+      margin-bottom: 6px;
+    }
+
+    .message a {
+      color: #7dd3fc;
+      text-decoration: none;
+    }
+
+    .assistant-form {
+      display: flex;
+      gap: 10px;
+      padding: 16px 18px 18px;
+      border-top: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .assistant-form input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid rgba(125, 211, 252, 0.18);
+      border-radius: 999px;
+      background: rgba(2, 6, 23, 0.8);
+      color: var(--text);
+      padding: 12px 14px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .assistant-form button {
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      color: #021119;
+      padding: 12px 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    @media (max-width: 540px) {
+      .assistant-shell { border-radius: 16px; }
+      .assistant-form { flex-direction: column; }
+      .assistant-form button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="assistant-shell">
+    <div class="assistant-header">
+      <div class="assistant-brand">
+        <span class="assistant-avatar">I</span>
+        <span>Infinine AI Assistant</span>
+      </div>
+      <div class="assistant-status">Site expert</div>
+    </div>
+
+    <div id="messages" class="messages" aria-live="polite"></div>
+
+    <form id="assistantForm" class="assistant-form">
+      <input id="assistantInput" type="text" placeholder="Ask about services, contacts, owner, or the site..." autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script>
+    const SITE_CONFIG = {
+      owner: 'Saigon Web Designer',
+      ownerWhatsapp: '254759240255',
+      companyWhatsapp: '254711922007',
+      email: 'infininesmartsolutions@gmail.com'
+    };
+
+    const SERVICE_INDEX = [
+      {
+        keywords: ['helb', 'student loan', 'higher loan', 'higher education loan board', 'kuccps'],
+        answer: 'HELB support: help with student loan applications and related education document assistance.',
+        source: '/index.html'
+      },
+      {
+        keywords: ['kra', 'pin', 'tax', 'nil', 'returns'],
+        answer: 'KRA & Tax help: PIN registration, NIL returns, tax document support, and general compliance guidance.',
+        source: '/index.html'
+      },
+      {
+        keywords: ['passport', 'birth certificate', 'id card', 'id services', 'marriage certificate', 'good conduct', 'police clearance', 'ecitizen'],
+        answer: 'Government services: eCitizen support, passport help, birth certificate, ID services, marriage certificate, and police clearance assistance.',
+        source: '/index.html'
+      },
+      {
+        keywords: ['cv', 'cv writing', 'cover letter', 'job', 'employment'],
+        answer: 'CV & job support: CV writing, cover letters, job application help, and professional document support.',
+        source: '/index.html'
+      },
+      {
+        keywords: ['printing', 'photocopy', 'scanning', 'typing', 'copies', 'documents'],
+        answer: 'Printing & document services: typing, photocopying, scanning, printing, binding, and document preparation.',
+        source: '/index.html'
+      },
+      {
+        keywords: ['computer', 'software', 'windows installation', 'formatting', 'troubleshooting'],
+        answer: 'Computer support: formatting, Windows installation, software setup, troubleshooting, and digital device assistance.',
+        source: '/index.html'
+      },
+      {
+        keywords: ['business', 'business registration', 'company', 'permit', 'logo', 'design', 'poster', 'flyer'],
+        answer: 'Business & design support: business registration, brand design, posters, flyers, and social media graphics.',
+        source: '/index.html'
+      },
+      {
+        keywords: ['internet', 'cyber', 'café', 'cybercafe', 'online application'],
+        answer: 'Cyber and online support: internet access, online applications, digital assistance, and general cyber café services.',
+        source: '/index.html'
+      }
+    ];
+
+    const FALLBACK_TEXT = "That service/info isn't listed on the site. Would you like to message us on WhatsApp for a quick reply?";
+
+    const messagesEl = document.getElementById('messages');
+    const formEl = document.getElementById('assistantForm');
+    const inputEl = document.getElementById('assistantInput');
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function appendMessage(sender, html) {
+      const message = document.createElement('div');
+      message.className = `message ${sender}`;
+      message.innerHTML = html;
+      messagesEl.appendChild(message);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function shortenText(str, maxLen = 130) {
+      const text = String(str || '').trim();
+      if (text.length <= maxLen) return text;
+      return text.slice(0, maxLen - 3).trim() + '...';
+    }
+
+    function normalizeText(value) {
+      return String(value || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function ownerMatch(value) {
+      const q = normalizeText(value);
+      return /who owns this site|who is the owner|owner of this site|site owner|who owns this website|who is the website owner/.test(q);
+    }
+
+    function contactMatch(value) {
+      const q = normalizeText(value);
+      return /(contact|reach|call|phone|whatsapp|email|how can i contact|how to reach|message|support|ceo|main contact|owner|web designer|number)/.test(q);
+    }
+
+    function servicesMatch(value) {
+      const q = normalizeText(value);
+      return /service|services|what do you offer|offerings|help with|what can you do|what services/.test(q);
+    }
+
+    function buildContactHtml() {
+      return [
+        '<strong>WhatsApp (owner / web designer):</strong> 0759240255 (<a href="https://wa.me/254759240255" target="_blank" rel="noreferrer">wa.me/254759240255</a>)',
+        '<strong>WhatsApp (CEO / main contact):</strong> 0711922007 (<a href="https://wa.me/254711922007" target="_blank" rel="noreferrer">wa.me/254711922007</a>)',
+        '<strong>Email:</strong> <a href="mailto:infininesmartsolutions@gmail.com">infininesmartsolutions@gmail.com</a>'
+      ].join('<br>');
+    }
+
+    function buildFallbackHtml(question) {
+      const suggestion = escapeHtml(question || 'your question');
+      return [
+        FALLBACK_TEXT,
+        '<strong>WhatsApp (owner / web designer):</strong> <a href="https://wa.me/254759240255" target="_blank" rel="noreferrer">0759240255</a>',
+        '<strong>WhatsApp (CEO / main contact):</strong> <a href="https://wa.me/254711922007" target="_blank" rel="noreferrer">0711922007</a>',
+        '<strong>Email:</strong> <a href="mailto:infininesmartsolutions@gmail.com">infininesmartsolutions@gmail.com</a>',
+        '<strong>Suggested message:</strong> Hello — I need help with: ' + suggestion
+      ].join('<br>');
+    }
+
+    function getBestServiceMatch(query) {
+      const q = normalizeText(query);
+      for (const item of SERVICE_INDEX) {
+        const hit = item.keywords.some(keyword => q.includes(normalizeText(keyword)));
+        if (hit) return item;
+      }
+      return null;
+    }
+
+    function gatherLocalIndex() {
+      const root = document.body ? document.body.innerText || '' : '';
+      const candidates = [
+        root,
+        document.title || '',
+        ...Array.from(document.querySelectorAll('h1, h2, h3, h4, p, li, a, meta')).map(el => el.textContent || el.getAttribute('content') || '')
+      ];
+      return candidates.join(' \n ');
+    }
+
+    async function fetchPublicPages() {
+      const pageUrls = ['./index.html', './terms/terms.html'];
+      const pages = [];
+
+      for (const url of pageUrls) {
+        try {
+          const response = await fetch(url, { cache: 'no-store' });
+          if (!response.ok) continue;
+          const html = await response.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          pages.push({
+            url,
+            text: (doc.body ? doc.body.innerText : '') || ''
+          });
+        } catch (error) {
+          // Ignore fetch issues in file:// environments and continue with the page already loaded.
+        }
+      }
+
+      return pages;
+    }
+
+    function scoreQueryAgainstText(query, text) {
+      const q = normalizeText(query);
+      const sourceText = normalizeText(text);
+      if (!q || !sourceText) return 0;
+      const words = q.split(' ');
+      const matches = words.filter(word => sourceText.includes(word)).length;
+      return matches;
+    }
+
+    function findRelevantSnippet(query, indexText) {
+      const q = normalizeText(query);
+      if (!q || !indexText) return null;
+      const parts = indexText.split(/\n|\.|\!|\?/).map(p => p.trim()).filter(Boolean);
+      let best = null;
+      for (const part of parts) {
+        const score = scoreQueryAgainstText(q, part);
+        if (score > 0 && (!best || score > best.score)) {
+          best = { score, text: part };
+        }
+      }
+      return best ? shortenText(best.text, 180) : null;
+    }
+
+    function getServiceListHtml() {
+      const items = [
+        'Government & eCitizen support',
+        'KRA & tax help',
+        'HELB support',
+        'CV writing & job support',
+        'Printing, scanning & typing',
+        'Business registration & design',
+        'Computer troubleshooting & software setup'
+      ];
+
+      return `
+        <ul>
+          ${items.map(item => '<li>' + escapeHtml(item) + '</li>').join('')}
+        </ul>
+        <div>More services available — contact us.</div>
+        ${buildContactHtml()}
+      `;
+    }
+
+    function getSiteAnswer(question) {
+      const q = normalizeText(question);
+      if (!q) return 'Please type your question so I can help.';
+
+      if (ownerMatch(question)) return 'Saigon Web Designer';
+
+      if (contactMatch(question)) return buildContactHtml();
+
+      const serviceMatch = getBestServiceMatch(question);
+      if (serviceMatch) {
+        return `${serviceMatch.answer}<br><span class="source">Source: ${serviceMatch.source}</span>`;
+      }
+
+      if (servicesMatch(question)) return getServiceListHtml();
+
+      return null;
+    }
+
+    async function answerQuestion(question) {
+      const direct = getSiteAnswer(question);
+      if (direct) {
+        return direct;
+      }
+
+      const localText = gatherLocalIndex();
+      const pages = await fetchPublicPages();
+      const combined = [localText, ...pages.map(page => page.text)].join('\n');
+      const snippet = findRelevantSnippet(question, combined) || findRelevantSnippet(question, localText);
+
+      if (snippet) {
+        return `${snippet}<br><span class="source">Source: /index.html</span>`;
+      }
+
+      return buildFallbackHtml(question);
+    }
+
+    formEl.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const question = inputEl.value.trim();
+      if (!question) return;
+
+      appendMessage('user', escapeHtml(question));
+      inputEl.value = '';
+
+      const reply = await answerQuestion(question);
+      appendMessage('bot', reply);
+    });
+
+    appendMessage('bot', `Hi! I can answer questions about the site, owner, contacts, and services.<br><strong>Example:</strong> “Who owns this site?” or “What services do you offer?”`);
+  </script>
+</body>
+</html>

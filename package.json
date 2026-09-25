@@ -1,0 +1,13 @@
+{
+  "name": "infinine-smart-solutions",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node -e \"console.log('Static site build: no bundling required.');\"",
+    "start": "npx http-server . -p 8080",
+    "dev": "npx http-server . -p 8080"
+  },
+  "devDependencies": {
+    "http-server": "^14.2.1"
+  }
+}
