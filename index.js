@@ -21,29 +21,6 @@ function saveStoredOrders(orders){
     localStorage.setItem(adminStorageKey, JSON.stringify(orders));
 }
 
-function getServiceAmount(service){
-    const lookup = {
-        "eCitizen Services": 1500,
-        "Good Conduct": 2000,
-        "Birth Certificate": 1800,
-        "ID Card": 2000,
-        "Passport": 2500,
-        "KRA PIN": 1500,
-        "HELB": 1200,
-        "CV Writing": 2500,
-        "Passport Photos": 800,
-        "Photocopying": 500,
-        "Document Scanning": 600,
-        "Typing": 700,
-        "Printing": 1000,
-        "Business Registration": 3000,
-        "Internet Access": 300,
-        "Computer Use": 400
-    };
-
-    return lookup[service] || 1200;
-}
-
 function generateOrderPdf(order){
     if(!window.jspdf || !window.jspdf.jsPDF){
         return "";
@@ -102,7 +79,6 @@ function openWhatsAppForService(service){
         phone: "Not provided",
         service,
         message: `Requested service: ${service}. Customer clicked the quick service request option from the homepage.`,
-        amount: getServiceAmount(service),
         status: "New",
         createdAt: new Date().toISOString()
     };
@@ -234,7 +210,6 @@ document
         phone,
         service,
         message,
-        amount: getServiceAmount(service),
         status: "New",
         createdAt: new Date().toISOString()
     };
@@ -245,14 +220,12 @@ document
     const whatsappMessage =
 `Hello Infinine Smart Solutions 👋
 
-New service request received.
+I would like to request the following service:
 
 Order ID: ${order.id}
 Customer Name: ${customer}
 Phone: ${phone}
 Service: ${service}
-Amount: KSh ${order.amount}
-Status: ${order.status}
 
 Message:
 ${message}`;
@@ -267,4 +240,11 @@ ${message}`;
 
 });
 
+const feedbackYes = document.getElementById("feedbackYes");
+const feedbackResponse = document.getElementById("feedbackResponse");
 
+feedbackYes.addEventListener("click", function(){
+    const message = "Thank you for your feedback. We’re glad you’re satisfied with our services.";
+    feedbackResponse.textContent = message;
+    window.alert(message);
+});
